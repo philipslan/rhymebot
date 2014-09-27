@@ -1,23 +1,18 @@
 <?php
 
-$query= strip_tags(stripslashes(($_POST['query'])));
+	$query= strip_tags(stripslashes(($_POST['query'])));
+	$data = file_get_contents('https://en.wikipedia.org/w/api.php?action=parse&page='.$query.'&prop=wikitext&format=json');
+	$data = json_decode($data, true);
+	$data = $data['parse']['wikitext']['*'];
 
-$data = file_get_contents('https://en.wikipedia.org/w/api.php?action=parse&page='.$query'&prop=wikitext&format=json');
-$data = json_decode($data, true);
+	preg_match_all('/^\s*\|\s*mma_([a-z]+)win\s*=\s*(\d*)/m', $data, $matches, PREG_SET_ORDER);
 
-print $data;
-/*
-$data = $data['parse']['wikitext']['*'];
-
-preg_match_all('/^\s*\|\s*mma_([a-z]+)win\s*=\s*(\d*)/m', $data, $matches, PREG_SET_ORDER);
-
-$wins = array();
-foreach($matches as $match) {
-    $wins[$match[1]] = (int)$match[2];
-} */
+	$wins = array();
+	foreach($matches as $match) {
+	    $wins[$match[1]] = (int)$match[2];
+	}
 
 ?>
-
 <h1>Nick Diaz's Wins</h1>
 <table border="1">
     <tr><th>Means</th><th>Wins</th></tr>
