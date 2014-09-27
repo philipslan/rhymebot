@@ -1,0 +1,22 @@
+body 
+{
+	margin-left: 20px;
+}
+
+.rhymebot{
+	text-align:center;
+}
+
+#title{
+	padding-top: 13%;
+}
+
+#query1{
+	width:40%;
+}
+
+#btn_submit{
+	border:none;
+	color: #FFF;
+	background-color: #000;
+}
