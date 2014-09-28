@@ -12,6 +12,29 @@
 	    $wins[$match[1]] = (int)$match[2];
 	}
 
+	$parsedText = "While conventional search engines ranked 
+	results by counting how many times the search terms appeared 
+	on the page, the two theorized about a better system that analyzed 
+	the relationships between websites. They called this new technology
+	PageRank; it determined a website's relevance by the number of pages, and 
+	the importance of those pages, that linked back to the original site.";
+
+	function sentenceParser($parsedText) {
+	    $offset = 0;
+	    $arrayCounter = 0;
+	    $periodPosition = 0;
+
+	    while (strrpos($parsedText, ".") + 1 !== $offset) {
+	    	$periodPosition = strpos($parsedText, ".", $offset);
+	    	$parsedTextSentences[$arrayCounter] = substr($parsedText, $offset, $periodPosition);
+	    	$offset = $periodPosition + 1;
+	        echo "<br/>";
+	        echo $parsedTextSentences[$arrayCounter];
+	    }
+	}
+
+$parsedTextSenteces = sentenceParser($parsedText);
+	
 ?>
 <h1>Nick Diaz's Wins</h1>
 <table border="1">
